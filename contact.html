@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact | Jasmin Hair &amp; Beauty</title>
+<meta name="description" content="Contact Jasmin Hair & Beauty in Erdington, Birmingham for bookings and enquiries.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="nav-row">
+    <a href="index.html" class="brand">Jasmin <span>Hair &amp; Beauty</span></a>
+    <button class="nav-toggle" aria-label="Toggle menu">&#9776;</button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li class="dropdown">
+        <a href="beauty-treatments.html">Beauty</a>
+        <div class="dropdown-menu">
+          <a href="beauty-treatments.html">Beauty Treatments</a>
+          <a href="eye-treatments.html">Eye Treatments</a>
+          <a href="waxing.html">Waxing</a>
+          <a href="nail.html">Nail</a>
+        </div>
+      </li>
+      <li><a href="massage.html">Massage</a></li>
+      <li><a href="hairdressing.html">Hairdressing</a></li>
+      <li><a href="contact.html" class="book-btn active">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<section class="page-hero">
+  <span class="eyebrow">Get in touch</span>
+  <h1>Contact Us</h1>
+  <p>Feel free to contact me about any of my services, pricing, or any specific requirement. I'm happy to answer your questions as soon as possible.</p>
+</section>
+
+<section>
+  <div class="section-inner contact-grid">
+    <div>
+      <!--
+        This form points to Formspree (a free form-handling service — 50 submissions/month free)
+        so it works on static hosting with no server of your own.
+        Replace YOUR_FORM_ID below with your real Formspree endpoint after signing up at formspree.io
+      -->
+      <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <div>
+          <label for="name">Name*</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div>
+          <label for="email">Email Address*</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div>
+          <label for="message">Message*</label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+        <button type="submit" class="btn">Submit</button>
+        <p class="form-note">Prefer a faster reply? Please message via WhatsApp below &mdash; SMS texts are not always reliable.</p>
+      </form>
+    </div>
+    <div>
+      <div class="info-block">
+        <h3>Connect</h3>
+        <p><a href="mailto:JasminBeautyTherapy@gmail.com">JasminBeautyTherapy@gmail.com</a></p>
+        <p>WhatsApp: <a href="https://wa.me/447400628248" target="_blank" rel="noopener">07400 628 248</a></p>
+        <p>Alternate number: 0794 081 4404</p>
+      </div>
+      <div class="info-block">
+        <h3>Visit</h3>
+        <p>Jasmin Hair &amp; Beauty</p>
+        <p>904 Chester Road</p>
+        <p>Erdington, Birmingham</p>
+        <p>B24 0BN</p>
+      </div>
+      <div class="info-block">
+        <h3>Follow</h3>
+        <p><a href="https://facebook.com/JasminBeautyTherapy/" target="_blank" rel="noopener">Facebook</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="cols">
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="mailto:JasminBeautyTherapy@gmail.com">JasminBeautyTherapy@gmail.com</a>
+        <p>WhatsApp: 07400 628 248</p>
+        <p>Alt: 0794 081 4404</p>
+      </div>
+      <div class="footer-col">
+        <h4>Visit</h4>
+        <p>904 Chester Road</p>
+        <p>Erdington, Birmingham</p>
+        <p>B24 0BN</p>
+      </div>
+      <div class="footer-col">
+        <h4>Follow</h4>
+        <a href="https://facebook.com/JasminBeautyTherapy/" target="_blank" rel="noopener">Facebook</a>
+      </div>
+    </div>
+  </div>
+  <p class="copyright">&copy; <span id="year"></span> Jasmin Hair &amp; Beauty. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
