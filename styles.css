@@ -68,7 +68,10 @@ img{max-width:100%;display:block;}
   border:1px solid rgba(31,51,39,0.12);min-width:180px;padding:8px 0;margin-top:10px;
   box-shadow:0 12px 24px rgba(31,51,39,0.08);
 }
-.dropdown:hover .dropdown-menu{display:block;}
+.dropdown:hover .dropdown-menu,
+.dropdown:focus-within .dropdown-menu{display:block;}
+/* invisible bridge so the menu doesn't close while the mouse crosses the gap */
+.dropdown-menu::before{content:"";position:absolute;left:0;right:0;top:-14px;height:14px;}
 .dropdown-menu a{display:block;padding:8px 18px;text-transform:none;font-size:0.9rem;}
 .dropdown-menu a:hover{background:var(--putty);}
 .nav-toggle{display:none;background:none;border:none;font-size:1.6rem;color:var(--forest);cursor:pointer;}
@@ -147,14 +150,33 @@ section{padding:64px 24px;}
 .benefit h3{font-size:1rem;margin-bottom:8px;}
 .benefit p{font-size:0.88rem;color:#4a4038;}
 
-/* -------- pricing table -------- */
-.price-table{width:100%;border-collapse:collapse;margin:0 auto;max-width:760px;}
-.price-table tr{border-bottom:1px solid rgba(31,51,39,0.12);}
-.price-table td{padding:14px 6px;font-size:0.98rem;}
-.price-table td:last-child{text-align:right;font-family:'Fraunces',serif;color:var(--rosewood);font-weight:600;white-space:nowrap;}
-.price-group{margin-bottom:44px;}
-.price-group h3{font-size:1.05rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--forest-light);margin-bottom:6px;}
-.price-note{font-size:0.85rem;color:#7a6f63;margin-top:10px;}
+/* -------- treatment information (prices live only in the PDF) -------- */
+.treatment-content{max-width:900px;}
+.treatment-content .prose{max-width:none;}
+.treatment-group{margin-bottom:40px;}
+.treatment-group h2{font-size:1.35rem;font-weight:500;margin-bottom:14px;}
+.treatment-list{
+  list-style:none;padding:0;margin:0;
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:32px;
+}
+.treatment-list li{
+  padding:14px 0;border-top:1px solid rgba(31,51,39,0.15);
+  font-size:1rem;overflow-wrap:anywhere;
+}
+.treatment-note{
+  border-left:3px solid var(--gold);background:var(--putty);
+  padding:13px 16px;margin:18px 0 0;font-size:0.94rem;color:var(--ink);
+}
+.action-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;}
+.action-row-centred{justify-content:center;margin-top:28px;}
+.action-row .btn{text-align:center;}
+.price-list-callout{
+  background:var(--putty);border:1px solid rgba(31,51,39,0.12);
+  border-left:4px solid var(--gold);padding:28px;margin-top:40px;
+}
+.price-list-callout h2{font-size:1.5rem;font-weight:500;margin:0 0 10px;}
+.price-list-callout p{max-width:66ch;margin:0 0 22px;}
+a:focus-visible,button:focus-visible{outline:3px solid var(--rosewood);outline-offset:5px;}
 
 /* -------- intro / about text blocks -------- */
 .prose{max-width:680px;margin:0 auto;font-size:1.05rem;color:#4a4038;}
@@ -198,6 +220,27 @@ footer a{color:var(--blush);}
 .page-hero p{max-width:56ch;margin:12px auto 0;color:#4a4038;}
 
 /* -------- responsive -------- */
+.nav-row{gap:24px;}
+.brand{flex-shrink:0;}
+.nav-links{gap:22px;}
+.nav-links > li > a{white-space:nowrap;}
+.nav-links .book-btn{padding:10px 18px;display:inline-block;}
+.footer-inner .cols{gap:36px 52px;}
+.footer-col a{overflow-wrap:anywhere;}
+
+@media (max-width:1080px){
+  .nav-row{flex-wrap:wrap;gap:0;}
+  .nav-links{
+    position:static;width:100%;flex-direction:column;align-items:flex-start;
+    padding:24px 0 12px;gap:18px;
+  }
+  /* With JavaScript unavailable, the full menu remains usable. */
+  .nav-ready .nav-links{display:none;max-height:calc(100dvh - 76px);overflow-y:auto;}
+  .nav-ready .nav-links.open{display:flex;}
+  .nav-ready .nav-toggle{display:block;min-width:44px;min-height:44px;}
+  .dropdown-menu{position:static;display:block!important;box-shadow:none;border:none;padding-left:12px;margin-top:8px;}
+  .dropdown-menu::before{display:none;}
+}
 @media (max-width:900px){
   .hero{grid-template-columns:1fr;padding-top:40px;}
   .hero-image{order:-1;max-width:340px;margin:0 auto;}
@@ -205,16 +248,19 @@ footer a{color:var(--blush);}
   .benefits{grid-template-columns:repeat(2,1fr);}
   .two-col{grid-template-columns:1fr;}
   .contact-grid{grid-template-columns:1fr;}
-  .nav-links{
-    position:fixed;top:68px;left:0;right:0;bottom:0;background:var(--ivory);
-    flex-direction:column;align-items:flex-start;padding:28px 24px;gap:20px;
-    transform:translateX(100%);transition:transform .3s ease;overflow-y:auto;
-  }
-  .nav-links.open{transform:translateX(0);}
-  .nav-toggle{display:block;}
-  .dropdown-menu{position:static;display:block!important;box-shadow:none;border:none;padding-left:12px;margin-top:8px;}
 }
 @media (max-width:600px){
   .grid{grid-template-columns:1fr;}
   .benefits{grid-template-columns:1fr 1fr;}
+  .treatment-list{grid-template-columns:1fr;}
+  .action-row{align-items:stretch;}
+  .action-row .btn{width:100%;padding:14px 16px;}
+  .page-hero .action-row{max-width:420px;margin-left:auto;margin-right:auto;}
+  .price-list-callout{padding:22px 18px;}
+  .brand{font-size:1.2rem;}
+  section{padding:44px 24px;}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  *,*::before,*::after{transition:none!important;}
 }
